@@ -21,13 +21,11 @@ def shift(c, shift_size):
                   big_Z if c.istitle() else small_z)
 
 def _shift(c, shift_size, left_border, right_border):
-    code = ord(c)
-    if (code >= (right_border - shift_size)) and (code <= right_border):
-        code = code - (right_border - left_border) + shift_size - 1
-    elif code < (left_border + 3):
-        code = code + (right_border - left_border) + shift_size + 1
-    elif ((code >= left_border) and (code <= (right_border - shift_size))):
-        code = code + shift_size
+    code = ord(c) + shift_size
+    if code > right_border:
+        code = left_border + (code - right_border - 1)
+    elif code < left_border:
+        code = right_border - (left_border - code - 1)
 
     return chr(code)
 
@@ -61,7 +59,7 @@ def main():
     '''начало программы'''
     print(encrypt_vigenere("PYTHON", "A"))
     print(decrypt_vigenere("python", "a"))
-    print(encrypt_vigenere("LXFOPVEFRNHR", "LEMON"))
+    print(decrypt_vigenere("LXFOPVEFRNHR", "LEMON"))
 
 if __name__ == '__main__':
     main()
