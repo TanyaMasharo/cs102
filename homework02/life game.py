@@ -2,7 +2,6 @@ import pygame
 import random
 from pygame.locals import *
 
-
 class Cell:
     def __init__(self, i, j, size, alive=False):
         self.i = i
